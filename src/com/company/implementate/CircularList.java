@@ -1,6 +1,7 @@
 package com.company.implementate;
 
 import javax.management.InstanceNotFoundException;
+import java.util.NoSuchElementException;
 
 public class CircularList<T extends  Comparable<T>>{
 
@@ -53,21 +54,24 @@ public class CircularList<T extends  Comparable<T>>{
             Node<T> node = head.getNext();
             while (node != head) {
                 c++;
+                node = node.getNext();
             }
         }
         return c;
     }
 
     public Node<T> getNode(int index) throws IndexOutOfBoundsException{
+        Node<T> returnNode = null;
         if (size() > index) {
             if (index == 0) {
-                return head;
+                returnNode = head;
             } else {
                 Node<T> node = head.getNext();
                 int c = 1;
                 while (node != head) {
                     if (c == index) {
-                        return node;
+                        returnNode = node;
+                        break;
                     }
                     c++;
                     node = node.getNext();
@@ -76,7 +80,72 @@ public class CircularList<T extends  Comparable<T>>{
         } else {
             throw new IndexOutOfBoundsException();
         }
-        return null;
+        return returnNode;
+    }
+    public T getData(int index) throws IndexOutOfBoundsException {
+        return getNode(index).getData();
+    }
+
+    //urmatoarele 2 -cu U la final- nu se opresc la head
+    public Node<T> getNodeU(int index) {
+        Node<T> returnNode = null;
+        if (index == 0) {
+            returnNode = head;
+        } else {
+            Node<T> node = head.getNext();
+            int c = 1;
+            while (c > 0) {
+                if (c == index) {
+                    returnNode = node;
+                    break;
+                }
+                c++;
+                node = node.getNext();
+            }
+        }
+        return returnNode;
+    }
+    public T getDataU(int index) {
+        return getNodeU(index).getData();
+    }
+
+    public int getIndex(Node<T> node) throws NoSuchElementException {
+        int c;
+        if (head != null) {
+            c = 0;
+            if (!node.equals(head)) {
+                Node<T> loop = head.getNext();
+                while (loop != head) {
+                    c++;
+                    if (loop == node) {
+                        return c;
+                    }
+                    loop = loop.getNext();
+                }
+            }
+        } else {
+            return 0;
+        }
+        throw new NoSuchElementException();
+    }
+    public int getIndex(T data) throws NoSuchElementException {
+        int c = -1;
+        if (head != null) {
+            c = 0;
+            if (!data.equals(head.getData())) {
+                Node<T> loop = head.getNext();
+                while (loop != head) {
+                    c++;
+                    if (loop.getData().equals(data)) {
+                        return c;
+                    }
+                    loop = loop.getNext();
+                }
+            }
+        } else {
+            return 0;
+        }
+        throw new NoSuchElementException();
     }
 
     //update

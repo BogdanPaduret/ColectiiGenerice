@@ -30,4 +30,13 @@ public class Node <T> {
         return this.data.equals(node.data) &&
                 this.next.equals(node.next);
     }
+
+    @Override
+    public String toString() {
+        String string = "";
+        string += "Data: " + data.toString()+"\n";
+        string += "Next: " + next.getData().toString();
+//        string += "Next: " + next.toString();
+        return string;
+    }
 }
