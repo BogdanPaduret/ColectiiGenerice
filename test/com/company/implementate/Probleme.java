@@ -251,7 +251,22 @@ public class Probleme {
 
     @Test
     public void p13_11() {
-        Lista lista = new Lista();
+        //vezi clasa CircularList
+    }
+
+    @Test
+    public void p13_12() {
+        //asa este deja lista implementata daca am inteles bine (nu avem previous)
+    }
+
+    @Test
+    public void p13_13() {
+        //as vrea sa fac la curs, nu am inteles bine ce trebuie sa faca dummy node
+    }
+
+    @Test
+    public void p13_14() {
+
     }
 
 }
