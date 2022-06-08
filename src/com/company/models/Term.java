@@ -26,6 +26,10 @@ public class Term implements Comparable<Term> {
         this.power = power;
     }
 
+    public Term multiply(Term term) {
+        return new Term(this.getCoefficient() * term.getCoefficient(), this.getPower() + term.getPower());
+    }
+
     @Override
     public boolean equals(Object o) {
         Term term = (Term) o;
@@ -37,12 +41,19 @@ public class Term implements Comparable<Term> {
     public int compareTo(Term o) {
         Integer thisPower = this.getPower();
         Integer oPower = o.getPower();
-        Integer thisCoef = this.getCoefficient();
-        Integer oCoef = o.getCoefficient();
+//        Integer thisCoef = this.getCoefficient();
+//        Integer oCoef = o.getCoefficient();
+//
+//        if (thisCoef == 0 || oCoef == 0 || thisPower == oPower) {
+//            return thisCoef.compareTo(oCoef);
+//        }
 
-        if (thisCoef == 0 || oCoef == 0 || thisPower == oPower) {
-            return thisCoef.compareTo(oCoef);
-        }
+
+        return thisPower.compareTo(oPower);
+    }
+    public int comparePower(Term o) {
+        Integer thisPower = this.getPower();
+        Integer oPower = o.getPower();
 
         return thisPower.compareTo(oPower);
     }
@@ -52,6 +63,8 @@ public class Term implements Comparable<Term> {
         String coef = coefficient + "x";
         if (coefficient == 1) {
             coef = "x";
+        } else if (coefficient == -1) {
+            coef = "-x";
         }
 
         return coef + ScriptFormat.toSuperscript(power + "");

@@ -8,6 +8,7 @@ public class Lista<T extends Comparable<T>>{
 
     private Node<T> head = null;
 
+    //create
     public void addFirst(T data) {
         if (head == null) {
             head = new Node<T>(data, null);
@@ -43,11 +44,15 @@ public class Lista<T extends Comparable<T>>{
         }
     }
 
+    //read
     public void set(T data, int index) {
         Node<T> node = getNode(index);
         node.setData(data);
     }
 
+    public Node<T> getFirst() {
+        return head;
+    }
     public Node<T> getNode(int index) throws IndexOutOfBoundsException {
         if (size() > index) {
             Node<T> node = head;
@@ -105,6 +110,10 @@ public class Lista<T extends Comparable<T>>{
         return -1;
     }
 
+    public Node<T> getNext(Node<T> node) {
+        return node.getNext();
+    }
+
     public int size() {
         int c = 0;
         Node<T> node = head;
@@ -115,18 +124,7 @@ public class Lista<T extends Comparable<T>>{
         return c;
     }
 
-    public void remove(int index) throws IndexOutOfBoundsException {
-        if (index == 0) {
-            head = getNode(index).getNext();
-        } else if (size() > index) {
-            Node<T> previous = getNode(index - 1);
-            Node<T> node = previous.getNext();
-            previous.setNext(node.getNext());
-        } else {
-            throw new IndexOutOfBoundsException();
-        }
-    }
-
+    //update
     public void sortAscending(Comparator<T> comparator) {
         boolean flag;
         do {
@@ -195,6 +193,46 @@ public class Lista<T extends Comparable<T>>{
 
             }
         } while (flag == false);
+    }
+    public void sortDescending() {
+        boolean flag;
+        do {
+            flag = true;
+            for (int i = 0; i < size(); i++) {
+                Node<T> node0 = getNode(i);
+                Node<T> node1 = node0.getNext();
+                T data0 = node0.getData();
+                T data1;
+                try {
+                    data1 = node1.getData();
+                    if (data0.compareTo(data1)<0) {
+                        T data = data0;
+                        set(data1, i);
+                        set(data, i + 1);
+                        flag = false;
+                    }
+                } catch (NullPointerException e) {
+                }
+
+            }
+        } while (flag == false);
+    }
+
+    //delete
+    public void remove(int index) throws IndexOutOfBoundsException {
+        if (index == 0) {
+            head = getNode(index).getNext();
+        } else if (size() > index) {
+            Node<T> previous = getNode(index - 1);
+            Node<T> node = previous.getNext();
+            previous.setNext(node.getNext());
+        } else {
+            throw new IndexOutOfBoundsException();
+        }
+    }
+
+    public void clear() {
+        head = null;
     }
 
     //cel mai mare
