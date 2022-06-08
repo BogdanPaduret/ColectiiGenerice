@@ -116,9 +116,9 @@ class PolynomialTest {
         Polynomial p1 = new Polynomial();
         p1.copy(p0);
 
-        System.out.println(p0.toString());
+        System.out.println(p0.compareContent());
 
-        assertEquals(p0.toString(), p1.toString());
+        assertEquals(p0.compareContent(), p1.compareContent());
     }
 
     @Test
@@ -126,6 +126,7 @@ class PolynomialTest {
         Polynomial p0 = new Polynomial();
         p0.add(2, 7);
         p0.add(-3, 3);
+//        p0.add(-5, 2);
 
         Polynomial p1 = new Polynomial();
         p1.add(1, 5);
@@ -138,7 +139,10 @@ class PolynomialTest {
 
         p0.multiply(p1);
 
-        p0.print();
+        String soll = "2x¹²-3x⁸+4x⁹-6x⁵";
+        String ist = p0.show();
+
+        assertEquals(soll, ist);
 
     }
 

@@ -15,6 +15,7 @@ public class Polynomial {
     }
 
     public void copy(Polynomial polynomial) {
+        this.clear();
         Node<Term> loop = polynomial.getFirstNode();
         while (loop != null) {
             this.lista.addLast(loop.getData());
@@ -47,26 +48,26 @@ public class Polynomial {
         System.out.println(this.show());
     }
 
-//    @Override
-//    public String toString() {
-//        String string = "";
-//        Node<Term> loop = getFirstNode();
-//        while (loop != null) {
-//            string += loop.toString();
-//            loop = loop.getNext();
-//        }
-//        return string;
-//    }
+    public String compareContent() {
+        String string = "";
+        Node<Term> loop = getFirstNode();
+        while (loop != null) {
+            string += loop.toString();
+            loop = loop.getNext();
+        }
+        return string;
+    }
 
     //update
-    public static Polynomial multiply(Polynomial p0, Polynomial p1) {
-        int outerSize = p0.size();
-        int innerSize = p1.size();
+    public static Polynomial multiply(Polynomial p0, Polynomial p) {
 
-        Polynomial p = p1;
+        Polynomial p1 = new Polynomial();
         p1.copy(p);
 
-//        p.clear();
+        p.clear();
+
+        int outerSize = p0.size();
+        int innerSize = p1.size();
 
         Node<Term> outerLoop = p0.getFirstNode();
         while (outerLoop != null) {
