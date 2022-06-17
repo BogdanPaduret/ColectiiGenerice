@@ -6,12 +6,14 @@ public class Masina implements Comparable<Masina> {
     private String name;
     private double price;
     private boolean sold;
+    private int ownerId;
 
-    public Masina(int id, String name, double price, boolean sold) {
+    public Masina(int id, String name, double price, boolean sold, int ownerId) {
         this.id = id;
         this.name = name;
         this.price = price;
         this.sold = sold;
+        this.ownerId = ownerId;
     }
 
     public int getId() {
@@ -42,13 +44,21 @@ public class Masina implements Comparable<Masina> {
         this.sold = sold;
     }
 
+    public int getOwnerId() {
+        return ownerId;
+    }
+    public void setOwnerId(Client owner) {
+        this.ownerId = ownerId;
+    }
+
     @Override
     public boolean equals(Object o) {
         Masina masina = (Masina) o;
         return this.id == masina.id &&
                 this.name.equals(masina.id) &&
                 this.price == masina.price &&
-                this.sold == masina.sold;
+                this.sold == masina.sold &&
+                this.ownerId == masina.ownerId;
     }
 
     @Override
@@ -58,6 +68,7 @@ public class Masina implements Comparable<Masina> {
         string += "Name: " + this.name + "\n";
         string += "Price: " + this.price + "\n";
         string += "Sold: " + this.sold + "\n";
+        string += "Owner ID: " + this.ownerId + "\n";
         return string;
     }
 

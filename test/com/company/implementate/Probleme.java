@@ -266,7 +266,8 @@ public class Probleme {
 
     @Test
     public void p13_14() {
-
+        //polinomul - a se verifica clasa Polynomial
     }
+
 
 }

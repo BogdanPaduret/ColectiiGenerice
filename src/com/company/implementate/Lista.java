@@ -5,7 +5,6 @@ import com.company.models.Client;
 import java.util.Comparator;
 
 public class Lista<T extends Comparable<T>>{
-
     private Node<T> head = null;
 
     //create
@@ -51,7 +50,7 @@ public class Lista<T extends Comparable<T>>{
     }
 
     public Node<T> getFirst() {
-        return head;
+         return head;
     }
     public Node<T> getNode(int index) throws IndexOutOfBoundsException {
         if (size() > index) {
@@ -282,5 +281,6 @@ public class Lista<T extends Comparable<T>>{
         }
         return data;
     }
+
 
 }
